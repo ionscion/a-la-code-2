@@ -9,8 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
+    "dotenv": "^16.0.3",
+    "install": "^0.13.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "mysql2": "^3.2.0",
+    "npm": "^9.6.3",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sequelize": "^6.30.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
