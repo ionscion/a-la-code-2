@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { GoChevronDown } from "react-icons/go";
 
-function Dropdown({ options, value, onChange }) {
+function Sidebar({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef();
 
@@ -55,4 +55,4 @@ function Dropdown({ options, value, onChange }) {
   );
 }
 
-export default Dropdown;
+export default Sidebar;
