@@ -24,3 +24,6 @@ or
 - replace env example files with your mysql credentials and db name
 - npm run seed
 - npm start
+
+## Notes
+- auth0 token request should be set to none
