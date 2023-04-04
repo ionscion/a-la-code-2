@@ -1,8 +1,6 @@
 import TableTwo from "../components/TableTwo";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function TablePage({ apiInfo }) {
-  const isAuthenticated = useAuth0();
   const config = [
     { label: "Name", render: (user) => user.name },
     {
@@ -17,9 +15,7 @@ function TablePage({ apiInfo }) {
 
   return (
     <div>
-      {isAuthenticated && (
-        <TableTwo keyFn={keyFn} apiInfo={apiInfo} config={config} />
-      )}
+      <TableTwo keyFn={keyFn} apiInfo={apiInfo} config={config} />
     </div>
   );
 }

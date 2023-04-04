@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const sequelize = require("./server/config/connection");
 const User = require("./server/models/User");
+const jwt = require("jsonwebtoken"); 
 
 const app = express();
 
@@ -9,8 +10,29 @@ const assetsRouter = require("./server/assets-router");
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
+const authMiddleware = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
+
 app.get("/api/v1/users", async (req, res) => {
   const user = await User.findAll();
+  res.json(user);
+});
+
+app.get("/api/v1/users/:id", authMiddleware, async (req, res) => {
+  const user = await User.findOne({ where: { user_id: req.params.id } });
   res.json(user);
 });
 

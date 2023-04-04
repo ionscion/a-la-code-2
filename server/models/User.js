@@ -25,6 +25,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    user_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    }
   },
   {
     // define the model options
