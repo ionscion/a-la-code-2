@@ -1,13 +1,15 @@
-import "materialize-css/dist/css/materialize.min.css";
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import SidebarPage from "./pages/SidebarPage";
 import { Table } from "./components/Table";
 import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./components/login";
+import LogoutButton from "./components/logout";
+import TablePage from "./pages/TablePage";
 
 function App() {
   const [apiInfo, setApiInfo] = useState(null);
-  const {isAuthenticated} = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     fetch("/api/v1/users")
@@ -17,10 +19,12 @@ function App() {
 
   return (
     <div>
+      {!isAuthenticated && <LoginButton />}
+      {isAuthenticated && <LogoutButton />}
       <Header />
       <SidebarPage />
-      {/* {isAuthenticated && renderedUsers} */}
-      <Table data={apiInfo}/>
+      {/* <Table data={apiInfo} /> */}
+      <TablePage apiInfo={apiInfo} />
     </div>
   );
 }

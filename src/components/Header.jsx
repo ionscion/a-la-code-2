@@ -1,7 +1,9 @@
 function Header() {
-    return (
-        <h1 className="deep-purple lighten-2">Legacy Systems</h1>
-    )
+  return (
+    <div>
+      <h1>Legacy Systems</h1>
+    </div>
+  );
 }
 
 export default Header;

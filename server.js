@@ -24,27 +24,6 @@ app.use("/src", assetsRouter);
 
 const { PORT = 5001 } = process.env;
 
-// app.listen(PORT, () => {
-//   console.log();
-//   console.log(`  App running in port ${PORT}`);
-//   console.log();
-//   console.log(`  > Local: \x1b[36mhttp://localhost:\x1b[1m${PORT}/\x1b[0m`);
-// });
-
-// sequelize.sync(
-//   { force: false }.then(() => {
-//     app.listen(PORT, () => {
-//       console.log();
-//       console.log(`  App running in port ${PORT}`);
-//       console.log();
-//       console.log(`  > Local: \x1b[36mhttp://localhost:\x1b[1m${PORT}/\x1b[0m`);
-//     });
-//   })
-// );
-// sequelize.sync({ force: false }).then(() => {
-//   app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
-// });
-
 sequelize.sync({ force: false }).then(() => {
   console.log("Database synced");
 
