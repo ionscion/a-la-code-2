@@ -6,8 +6,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import LoginButton from "./login";
+import LogoutButton from "./logout";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ButtonAppBar() {
+    const { isAuthenticated} = useAuth0();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -24,7 +28,8 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Legacy Systems
           </Typography>
-          <Button color="inherit">Login</Button>
+          {!isAuthenticated && <LoginButton color="inherit"/>}
+          {isAuthenticated && <LogoutButton color="inherit"/>}
         </Toolbar>
       </AppBar>
     </Box>

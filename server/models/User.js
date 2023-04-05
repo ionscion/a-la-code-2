@@ -5,7 +5,6 @@ class User extends Model {}
 
 User.init(
   {
-    // define the model attributes (columns)
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,8 +21,7 @@ User.init(
     user_id: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      primaryKey: true
+      unique: false,
     }
   },
   {

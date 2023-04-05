@@ -27,7 +27,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 // };
 
 app.get("/api/v1/users/:id", async (req, res) => {
-  const user = await User.findOne({where: {user_id: req.params.id}});
+  const user = await User.findAll({where: {user_id: req.params.id}});
   res.json(user);
 });
 

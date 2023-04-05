@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import SidebarPage from "./pages/SidebarPage";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "./components/login";
-import LogoutButton from "./components/logout";
 import TablePage from "./pages/TablePage";
 import jwt_decode from "jwt-decode";
 import Dashboard from "./components/Dashboard";
 import ButtonAppBar from "./components/Appbar";
+import DataTable from "./components/DataTable";
 
 function App() {
   const [apiInfo, setApiInfo] = useState(null);
@@ -51,13 +48,10 @@ function App() {
 
   return (
     <div>
-      {/* <Header /> */}
       <ButtonAppBar />
-      {!isAuthenticated && <LoginButton />}
-      {isAuthenticated && <LogoutButton />}
       {isAuthenticated && <Dashboard />}
-      {/* <SidebarPage /> */}
-      {isAuthenticated && <TablePage apiInfo={apiInfo} />}
+      {/* {isAuthenticated && <TablePage apiInfo={apiInfo} />} */}
+      {isAuthenticated && <DataTable apiInfo={apiInfo} />}
     </div>
   );
 }

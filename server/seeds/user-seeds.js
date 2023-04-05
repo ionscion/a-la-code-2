@@ -19,6 +19,18 @@ const usersData = [
     password: "a9880ahl2",
     user_id: "adfjer0"
   },
+  {
+    name: 'Dan Kalty',
+    email: "dantheman@mail.com",
+    password: "1354jlsdh",
+    user_id: "642a040dd008ca1da5ed0863"
+  },
+  {
+    name: 'Harry Potter',
+    email: "alohamora@mail.com",
+    password: "kajfd08dfl",
+    user_id: "642a040dd008ca1da5ed0863"
+  },
 
 ];
 
