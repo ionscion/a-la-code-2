@@ -10,7 +10,7 @@ function TablePage({ apiInfo }) {
   ];
 
   const keyFn = (user) => {
-    return user.id;
+    return user.user_id;
   };
 
   return (

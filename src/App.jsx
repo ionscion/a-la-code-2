@@ -11,49 +11,43 @@ import ButtonAppBar from "./components/Appbar";
 
 function App() {
   const [apiInfo, setApiInfo] = useState(null);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const [accessToken, setAccessToken] = useState(null);
-  useAuth0()
-    .getAccessTokenSilently()
-    .then((jwt) => {
-      console.log(jwt);
-      console.log(jwt_decode(jwt));
-      setAccessToken(jwt);
-    });
 
-  // const accessToken = useAuth0().getAccessTokenSilently();
-  useEffect(() => {
-    fetch("/api/v1/users")
-      .then((data) => data.json())
-      .then((data) => setApiInfo(data));
-  }, []);
 
   // useEffect(() => {
-  //   fetch("/api/v1/users", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: "Bearer " + accessToken,
-  //     },
-  //   })
+  //   fetch("/api/v1/users")
   //     .then((data) => data.json())
   //     .then((data) => setApiInfo(data));
   // }, []);
 
-  // useEffect(() => {
-  //   const decoded = jwt_decode(accessToken); // Decode the JWT token
-  //   console.log(accessToken);
-  //   console.log(decoded);
-  //   const userId = decoded.sub; // Extract the user id from the decoded token
+  useEffect(() => {
+    const getToken = async () => {
+      const token = await getIdTokenClaims();
+      setAccessToken(token.__raw); // get the actual token from the response
+    };
 
-  //   fetch(`/api/v1/users/${userId}`, {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: "Bearer " + accessToken,
-  //     },
-  //   })
-  //     .then((data) => data.json())
-  //     .then((data) => setApiInfo(data));
-  // }, [accessToken]);
+    if (isAuthenticated) {
+      getToken();
+    }
+  }, [getIdTokenClaims, isAuthenticated]);
+
+
+  useEffect(() => {
+    if (accessToken) {
+      const user_id = jwt_decode(accessToken).sub.slice(6);
+      console.log(user_id);
+      fetch(`/api/v1/users/${user_id}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+        .then((data) => data.json())
+        .then((data) => setApiInfo(data))
+        .catch((error) => console.error(error));
+    }
+  }, [accessToken]);
 
   return (
     <div>

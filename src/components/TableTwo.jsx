@@ -1,7 +1,8 @@
 function TableTwo({ apiInfo, config, keyFn }) {
   let renderedRows = null;
   if (apiInfo) {
-    renderedRows = apiInfo.map((rowapiInfo) => {
+    const rowsArray = Array.isArray(apiInfo) ? apiInfo : [apiInfo];
+    renderedRows = rowsArray.map((rowapiInfo) => {
       const renderedCells = config.map((column) => {
         return <td key={column.label}>{column.render(rowapiInfo)}</td>;
       });

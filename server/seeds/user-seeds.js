@@ -5,9 +5,8 @@ const usersData = [
     name: 'Ben Spot',
     email: "benspot@mail.com",
     password: "12lsfuo4",
-    user_id: "auth0|642a040dd008ca1da5ed0863"
+    user_id: "642a040dd008ca1da5ed0863"
   },
-  //check pipe
   {
     name: 'Jeff Erby',
     email: "geoff@mail.com",
