@@ -31,6 +31,25 @@ const usersData = [
     password: "kajfd08dfl",
     user_id: "642a040dd008ca1da5ed0863"
   },
+  {
+    name: 'Severus Snape',
+    email: "snape@mail.com",
+    password: "adf432rt5d",
+    user_id: "642ce0019e6ad19131005f62"
+  },
+  {
+    name: 'Albus Dumbledore',
+    email: "dumble@mail.com",
+    password: "adf90wer876",
+    user_id: "642ce0019e6ad19131005f62"
+  },
+  {
+    name: 'Ron Weasley',
+    email: "realron@mail.com",
+    password: "adf25gdfg",
+    user_id: "642ce0019e6ad19131005f62"
+  },
+
 
 ];
 

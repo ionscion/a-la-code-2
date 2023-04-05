@@ -11,7 +11,6 @@ function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const [accessToken, setAccessToken] = useState(null);
 
-
   // useEffect(() => {
   //   fetch("/api/v1/users")
   //     .then((data) => data.json())
@@ -28,7 +27,6 @@ function App() {
       getToken();
     }
   }, [getIdTokenClaims, isAuthenticated]);
-
 
   useEffect(() => {
     if (accessToken) {
@@ -48,8 +46,8 @@ function App() {
 
   return (
     <div>
-      <ButtonAppBar />
-      {isAuthenticated && <Dashboard />}
+      <ButtonAppBar sx={{ margin: 2 }} />
+      <div style={{margin: 10}}> {isAuthenticated && <Dashboard  />}</div>
       {/* {isAuthenticated && <TablePage apiInfo={apiInfo} />} */}
       {isAuthenticated && <DataTable apiInfo={apiInfo} />}
     </div>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { Typography } from "@mui/material";
 
 // const columns = [
 //   { field: 'id', headerName: 'ID', width: 70 },
@@ -46,8 +47,8 @@ export default function DataTable({ apiInfo }) {
   }
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <h2>Client List</h2>
+    <div style={{ height: 500, width: "100%" }}>
+      <Typography variant="h4">Client List</Typography>
       <DataGrid
         rows={rows}
         columns={columns}
