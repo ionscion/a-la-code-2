@@ -13,8 +13,6 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const open = Boolean(anchorEl);
 
- 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -45,7 +43,8 @@ export default function Dashboard() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        variant="outlined" size="large"
+        variant="outlined"
+        size="large"
         color="secondary"
       >
         Dashboard
@@ -83,7 +82,13 @@ export default function Dashboard() {
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <TextField
                 required
-                label="Name"
+                label="First Name"
+                variant="outlined"
+                margin="normal"
+              />
+              <TextField
+                required
+                label="Last Name"
                 variant="outlined"
                 margin="normal"
               />
@@ -91,6 +96,13 @@ export default function Dashboard() {
                 required
                 label="Email"
                 type="email"
+                variant="outlined"
+                margin="normal"
+              />
+              <TextField
+                required
+                label="Phone Number"
+                type="input"
                 variant="outlined"
                 margin="normal"
               />

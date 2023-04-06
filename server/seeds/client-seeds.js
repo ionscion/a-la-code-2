@@ -26,6 +26,30 @@ const clientData = [
     user_id: "642a040dd008ca1da5ed0863"
   },
   {
+    first_name: 'Harry',
+    middle_name: 'James',
+    last_name: 'Potter',
+    email: "hpotter@mail.com",
+    phone_number: 8005008463,
+    birthday: 05/16/1988,
+    is_active: true,
+    created_at: '2019-11-12 5:30:26',
+    updated_at: '2020-03-15 9:52:29',
+    user_id: "642a040dd008ca1da5ed0863"
+  },
+  {
+    first_name: 'Some',
+    middle_name: 'Other',
+    last_name: 'Guy',
+    email: "guy@mail.com",
+    phone_number: 7034657831,
+    birthday: 03/26/1993,
+    is_active: true,
+    created_at: '2019-11-12 5:30:26',
+    updated_at: '2020-03-15 9:52:29',
+    user_id: "642a040dd008ca1da5ed0863"
+  },
+  {
     first_name: 'Cosmo',
     middle_name: 'Michael',
     last_name: 'Kramer',

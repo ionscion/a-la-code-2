@@ -7,7 +7,7 @@ import DataTable from "./components/DataTable";
 import { red, purple, green, blue } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Modal from "./components/Modal";
-
+import ClientDataTable from "./components/ClientDataTable";
 
 let theme = createTheme({
   palette: {
@@ -46,7 +46,7 @@ function App() {
     if (accessToken) {
       const user_id = jwt_decode(accessToken).sub.slice(6);
       console.log(user_id);
-      fetch(`/api/v1/users/${user_id}`, {
+      fetch(`/api/v1/clients/${user_id}`, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + accessToken,
@@ -62,8 +62,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <ButtonAppBar />
       {isAuthenticated && <Dashboard />}
-      {/* {isAuthenticated && <TablePage apiInfo={apiInfo} />} */}
-      {isAuthenticated && <DataTable apiInfo={apiInfo} />}
+      {/* {isAuthenticated && <DataTable apiInfo={apiInfo} />} */}
+      {isAuthenticated && <ClientDataTable apiInfo={apiInfo} />}
       <Modal title={"Trusts"} body={"A trust is a confusing thing!"} />
       <Modal title={"Estates"} body={"Causes much confusion!"} />
     </ThemeProvider>

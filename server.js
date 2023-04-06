@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 const sequelize = require("./server/config/connection");
 const User = require("./server/models/User");
-const jwt = require("jsonwebtoken"); 
+const jwt = require("jsonwebtoken");
+const Client = require("./server/models/Client");
 
 const app = express();
 
@@ -27,7 +28,12 @@ app.use("/", express.static(path.join(__dirname, "public")));
 // };
 
 app.get("/api/v1/users/:id", async (req, res) => {
-  const user = await User.findAll({where: {user_id: req.params.id}});
+  const user = await User.findAll({ where: { user_id: req.params.id } });
+  res.json(user);
+});
+
+app.get("/api/v1/clients/:id", async (req, res) => {
+  const user = await Client.findAll({ where: { user_id: req.params.id } });
   res.json(user);
 });
 
@@ -40,8 +46,6 @@ app.get("/api/v1/users", async (req, res) => {
 //   const user = await User.findOne({ where: { user_id: req.params.id } });
 //   res.json(user);
 // });
-
-
 
 app.get("/*", (_req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
