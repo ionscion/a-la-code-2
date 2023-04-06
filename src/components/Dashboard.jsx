@@ -13,6 +13,8 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const open = Boolean(anchorEl);
 
+ 
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,7 +38,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
+    <div style={{ margin: 10 }}>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -44,6 +46,7 @@ export default function Dashboard() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         variant="outlined" size="large"
+        color="secondary"
       >
         Dashboard
       </Button>
@@ -58,7 +61,7 @@ export default function Dashboard() {
       >
         <MenuItem onClick={handleClose}>All Contacts</MenuItem>
         <MenuItem onClick={handleOpenModal}>New Contact</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
       <Modal open={isModalOpen} onClose={handleCloseModal}>
         <Box

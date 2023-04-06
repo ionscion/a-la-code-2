@@ -1,10 +1,22 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import TablePage from "./pages/TablePage";
 import jwt_decode from "jwt-decode";
 import Dashboard from "./components/Dashboard";
 import ButtonAppBar from "./components/Appbar";
 import DataTable from "./components/DataTable";
+import { red, purple, green, blue} from "@mui/material/colors";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: green[800],
+    },
+    secondary: {
+      main: green[400],
+    },
+  },
+});
 
 function App() {
   const [apiInfo, setApiInfo] = useState(null);
@@ -45,12 +57,12 @@ function App() {
   }, [accessToken]);
 
   return (
-    <div>
-      <ButtonAppBar sx={{ margin: 2 }} />
-      <div style={{margin: 10}}> {isAuthenticated && <Dashboard  />}</div>
+    <ThemeProvider theme={theme}>
+      <ButtonAppBar />
+      {isAuthenticated && <Dashboard />}
       {/* {isAuthenticated && <TablePage apiInfo={apiInfo} />} */}
       {isAuthenticated && <DataTable apiInfo={apiInfo} />}
-    </div>
+    </ThemeProvider>
   );
 }
 

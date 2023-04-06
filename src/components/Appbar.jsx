@@ -26,7 +26,7 @@ export default function ButtonAppBar() {
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h2" component="div" sx={{ flexGrow: 1 }}>
-            Legacy Systems
+            Legacy Architects
           </Typography>
           {!isAuthenticated && <LoginButton color="inherit"/>}
           {isAuthenticated && <LogoutButton color="inherit"/>}
