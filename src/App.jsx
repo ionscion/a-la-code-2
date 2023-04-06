@@ -4,8 +4,10 @@ import jwt_decode from "jwt-decode";
 import Dashboard from "./components/Dashboard";
 import ButtonAppBar from "./components/Appbar";
 import DataTable from "./components/DataTable";
-import { red, purple, green, blue} from "@mui/material/colors";
+import { red, purple, green, blue } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Modal from "./components/Modal";
+
 
 let theme = createTheme({
   palette: {
@@ -62,6 +64,8 @@ function App() {
       {isAuthenticated && <Dashboard />}
       {/* {isAuthenticated && <TablePage apiInfo={apiInfo} />} */}
       {isAuthenticated && <DataTable apiInfo={apiInfo} />}
+      <Modal title={"Trusts"} body={"A trust is a confusing thing!"} />
+      <Modal title={"Estates"} body={"Causes much confusion!"} />
     </ThemeProvider>
   );
 }

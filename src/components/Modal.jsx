@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import InfoIcon from '@mui/icons-material/Info';
 
 const style = {
   position: 'absolute',
@@ -16,14 +17,14 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+export default function BasicModal({title, body}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}><InfoIcon /></Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -32,10 +33,10 @@ export default function BasicModal() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            {title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {body}
           </Typography>
         </Box>
       </Modal>
