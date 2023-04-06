@@ -1,13 +1,12 @@
-import Header from "../components/Header";
-import SidebarPage from "../pages/SidebarPage";
-import { useAuth0 } from "@auth0/auth0-react";
 import App from "../app";
+import { Provider } from "../context/clients";
 
 function Root() {
-  const { isAuthenticated } = useAuth0();
   return (
     <div>
-      <App />
+      <Provider>
+        <App />
+      </Provider>
     </div>
   );
 }
