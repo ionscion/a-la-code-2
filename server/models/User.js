@@ -21,7 +21,7 @@ User.init(
     user_id: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: false,
+      unique: true,
     }
   },
   {
