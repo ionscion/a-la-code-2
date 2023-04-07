@@ -7,7 +7,7 @@ const columns = [
   { field: "firstName", headerName: "First name", width: 130 },
   { field: "lastName", headerName: "Last name", width: 130 },
   { field: "email", headerName: "Email", width: 150 },
-  { field: "user_id", headerName: "Lawyer Id", width: 200 },
+  { field: "user_id", headerName: "Lawyer Id", width: 500 },
 ];
 
 export default function DataTable({ apiInfo }) {

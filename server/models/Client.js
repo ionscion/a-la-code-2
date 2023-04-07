@@ -54,8 +54,7 @@ Client.init(
     },
     user_id: {
       type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: "642a040dd008ca1da5ed0863"
+      allowNull: false
     },
   },
   {

@@ -12,8 +12,7 @@ import useClientContext from "../hooks/useClientContext";
 export default function Dashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [accessToken, setAccessToken] = useState(null);
-  const { createClient, getToken } = useClientContext();
+  const { createClient, getToken, createClientAuth } = useClientContext();
   const [client, setClient] = useState({
     first_name: "",
     last_name: "",
@@ -44,7 +43,8 @@ export default function Dashboard() {
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    createClient(client);
+    // createClient(client);
+    createClientAuth(client);
     handleCloseModal();
   };
 

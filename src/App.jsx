@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Modal from "./components/Modal";
 import ClientDataTable from "./components/ClientDataTable";
 import ClientContext from "./context/clients";
+import jwt_decode from "jwt-decode";
 
 let theme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const { fetchClients, getToken, apiInfo, accessToken } =
     useContext(ClientContext);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated) {

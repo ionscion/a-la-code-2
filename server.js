@@ -39,7 +39,7 @@ app.get("/api/v1/clients/:id", async (req, res) => {
   res.json(user);
 });
 
-app.post("/api/v1/clients/:id", async (req, res) => {
+app.post("/api/v1/clients/auth", async (req, res) => {
   console.log(req);
   Client.create(req.body)
     .then((client) => {

@@ -8,13 +8,30 @@ function Provider({ children }) {
   const [apiInfo, setApiInfo] = useState(null);
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const [accessToken, setAccessToken] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   const getToken = async () => {
     const token = await getIdTokenClaims();
     setAccessToken(token.__raw); // get the actual token from the response
   };
 
-  const fetchClients = useCallback(async () => {
+  // const fetchClients = useCallback(async () => {
+  //   const user_id = jwt_decode(accessToken).sub.slice(6);
+  //   setUserId(user_id);
+  //   console.log(user_id);
+  //   console.log(userId);
+  //   fetch(`/api/v1/clients/${user_id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: "Bearer " + accessToken,
+  //     },
+  //   })
+  //     .then((data) => data.json())
+  //     .then((data) => setApiInfo(data))
+  //     .catch((error) => console.error(error));
+  // });
+
+  const fetchClients = async () => {
     const user_id = jwt_decode(accessToken).sub.slice(6);
     console.log(user_id);
     fetch(`/api/v1/clients/${user_id}`, {
@@ -26,10 +43,12 @@ function Provider({ children }) {
       .then((data) => data.json())
       .then((data) => setApiInfo(data))
       .catch((error) => console.error(error));
-  });
+  };
 
   const createClientAuth = async (data) => {
-    fetch(`/api/v1/clients/${user_id}`, {
+    const user_id = jwt_decode(accessToken).sub.slice(6);
+    data.user_id = user_id; // Add user_id to the data object
+    fetch(`/api/v1/clients/auth`, {
       method: "POST",
       headers: {
         Authorization: "Bearer " + accessToken,
@@ -41,6 +60,7 @@ function Provider({ children }) {
       .then((data) => setApiInfo(data))
       .catch((error) => console.error(error));
   };
+  
 
   const createClient = async (data) => {
     fetch(`/api/v1/clients/`, {
@@ -61,7 +81,8 @@ function Provider({ children }) {
     getToken,
     apiInfo,
     accessToken,
-    createClient
+    createClient, 
+    createClientAuth
   };
 
   return (
