@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Dashboard from "./components/Dashboard";
 import ButtonAppBar from "./components/Appbar";
-import { red, purple, green, blue } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Modal from "./components/Modal";
 import ClientDataTable from "./components/ClientDataTable";
@@ -11,10 +10,10 @@ import ClientContext from "./context/clients";
 let theme = createTheme({
   palette: {
     primary: {
-      main: green[800],
+      main: "#0B746C",
     },
     secondary: {
-      main: green[400],
+      main: "#0B746C",
     },
   },
 });

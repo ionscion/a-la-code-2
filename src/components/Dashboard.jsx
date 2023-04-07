@@ -7,10 +7,19 @@ import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import useClientContext from "../hooks/useClientContext";
 
 export default function Dashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
+  const { createClient, getToken } = useClientContext();
+  const [client, setClient] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone_number: "",
+  });
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -29,9 +38,13 @@ export default function Dashboard() {
     setIsModalOpen(false);
   };
 
+  const handleInputChange = (event) => {
+    setClient({ ...client, [event.target.name]: event.target.value });
+  };
+
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    // need to add form submission logic
+    createClient(client);
     handleCloseModal();
   };
 
@@ -85,12 +98,18 @@ export default function Dashboard() {
                 label="First Name"
                 variant="outlined"
                 margin="normal"
+                name="first_name"
+                value={client.first_name}
+                onChange={handleInputChange}
               />
               <TextField
                 required
                 label="Last Name"
                 variant="outlined"
                 margin="normal"
+                name="last_name"
+                value={client.last_name}
+                onChange={handleInputChange}
               />
               <TextField
                 required
@@ -98,6 +117,9 @@ export default function Dashboard() {
                 type="email"
                 variant="outlined"
                 margin="normal"
+                name="email"
+                value={client.email}
+                onChange={handleInputChange}
               />
               <TextField
                 required
@@ -105,6 +127,9 @@ export default function Dashboard() {
                 type="input"
                 variant="outlined"
                 margin="normal"
+                name="phone_number"
+                value={client.phone_number}
+                onChange={handleInputChange}
               />
               <Button type="submit" variant="contained">
                 Save

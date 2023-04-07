@@ -18,7 +18,7 @@ Client.init(
     },
     middle_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     last_name: {
       type: DataTypes.STRING,
@@ -35,23 +35,27 @@ Client.init(
     },
     birthday: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     is_active: {
       type: DataTypes.TINYINT,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: true
     },
     created_at: {
       type: DataTypes.TIME,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: DataTypes.NOW,
     },
     updated_at: {
       type: DataTypes.TIME,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: DataTypes.NOW,
     },
     user_id: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: "642a040dd008ca1da5ed0863"
     },
   },
   {

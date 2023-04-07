@@ -28,30 +28,40 @@ function Provider({ children }) {
       .catch((error) => console.error(error));
   });
 
-  //   const deleteBookById = async (id) => {
-  //     await axios.delete(`http://localhost:3001/books/${id}`);
+  const createClientAuth = async (data) => {
+    fetch(`/api/v1/clients/${user_id}`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => setApiInfo(data))
+      .catch((error) => console.error(error));
+  };
 
-  //     const updatedBooks = books.filter((book) => {
-  //       return book.id !== id;
-  //     });
-  //     setBooks(updatedBooks);
-  //   };
-
-  //   const createBook = async (title) => {
-  //     const response = await axios.post("http://localhost:3001/books", {
-  //       title,
-  //     });
-
-  //     const updatedBooks = [...books, response.data];
-  //     setBooks(updatedBooks);
-  //   };
+  const createClient = async (data) => {
+    fetch(`/api/v1/clients/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => setApiInfo(data))
+      .catch((error) => console.error(error));
+  };
+  
 
   const valueToShare = {
-    apiInfo,
     fetchClients,
     getToken,
     apiInfo,
-    accessToken
+    accessToken,
+    createClient
   };
 
   return (
