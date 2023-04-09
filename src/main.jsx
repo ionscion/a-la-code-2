@@ -1,17 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Auth0Provider} from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
-
+import { ClientProfileDetails } from "./routes/ClientDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "clients/details",
+        element: <ClientProfileDetails />,
+      },
+    ],
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

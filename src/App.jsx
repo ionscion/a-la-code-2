@@ -7,6 +7,7 @@ import Modal from "./components/Modal";
 import ClientDataTable from "./components/ClientDataTable";
 import ClientContext from "./context/clients";
 import jwt_decode from "jwt-decode";
+import { Outlet } from "react-router-dom";
 
 let theme = createTheme({
   palette: {
@@ -21,8 +22,14 @@ let theme = createTheme({
 
 function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
-  const { fetchClients, getToken, apiInfo, accessToken } =
-    useContext(ClientContext);
+  const {
+    fetchClients,
+    getToken,
+    apiInfo,
+    accessToken,
+    clientData,
+    getSingleClient,
+  } = useContext(ClientContext);
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -37,12 +44,17 @@ function App() {
     }
   }, [accessToken]);
 
+  // useEffect(() => {
+  //   getSingleClient(1);
+  // }, [isAuthenticated]);
+
   return (
     <ThemeProvider theme={theme}>
       <ButtonAppBar />
       {isAuthenticated && <Dashboard />}
       {isAuthenticated && <ClientDataTable apiInfo={apiInfo} />}
-      <Modal title={"Trusts"} body={"A trust is a confusing thing!"} />
+      <Outlet />
+      {/* <Modal title={"Trusts"} body={"A trust is a confusing thing!"} /> */}
     </ThemeProvider>
   );
 }

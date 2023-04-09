@@ -39,6 +39,11 @@ app.get("/api/v1/clients/:id", async (req, res) => {
   res.json(user);
 });
 
+app.get("/api/v1/clients/details/:id", async (req, res) => {
+  const client = await Client.findOne({ where: {id: req.params.id } });
+  res.json(client);
+});
+
 app.post("/api/v1/clients/auth", async (req, res) => {
   console.log(req);
   Client.create(req.body)
@@ -63,32 +68,10 @@ app.post("/api/v1/clients/", async (req, res) => {
     });
 });
 
-// app.post("/api/v1/clients/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const body = {
-//     ...req.body,
-//     user_id: id,
-//   };
-//   console.log(body);
-//   Client.create(body)
-//     .then((client) => {
-//       res.status(200).json(client);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
-
 app.get("/api/v1/users", async (req, res) => {
   const user = await User.findAll();
   res.json(user);
 });
-
-// app.get("/api/v1/users/:id", authMiddleware, async (req, res) => {
-//   const user = await User.findOne({ where: { user_id: req.params.id } });
-//   res.json(user);
-// });
 
 app.get("/*", (_req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));

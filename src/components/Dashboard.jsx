@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import useClientContext from "../hooks/useClientContext";
+import { Outlet, Link } from "react-router-dom";
 
 export default function Dashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -71,9 +72,20 @@ export default function Dashboard() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>All Contacts</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            All Contacts
+          </Link>
+        </MenuItem>
         <MenuItem onClick={handleOpenModal}>New Contact</MenuItem>
-        {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+        <MenuItem onClick={handleClose}>
+          <Link
+            to="/clients/details"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Contact Page
+          </Link>
+        </MenuItem>
       </Menu>
       <Modal open={isModalOpen} onClose={handleCloseModal}>
         <Box

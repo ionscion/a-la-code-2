@@ -9,27 +9,12 @@ function Provider({ children }) {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const [accessToken, setAccessToken] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [clientData, setClientData] = useState(null);
 
   const getToken = async () => {
     const token = await getIdTokenClaims();
     setAccessToken(token.__raw); // get the actual token from the response
   };
-
-  // const fetchClients = useCallback(async () => {
-  //   const user_id = jwt_decode(accessToken).sub.slice(6);
-  //   setUserId(user_id);
-  //   console.log(user_id);
-  //   console.log(userId);
-  //   fetch(`/api/v1/clients/${user_id}`, {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: "Bearer " + accessToken,
-  //     },
-  //   })
-  //     .then((data) => data.json())
-  //     .then((data) => setApiInfo(data))
-  //     .catch((error) => console.error(error));
-  // });
 
   const fetchClients = async () => {
     const user_id = jwt_decode(accessToken).sub.slice(6);
@@ -42,6 +27,18 @@ function Provider({ children }) {
     })
       .then((data) => data.json())
       .then((data) => setApiInfo(data))
+      .catch((error) => console.error(error));
+  };
+
+  const getSingleClient = async (id) => {
+    fetch(`/api/v1/clients/details/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => setClientData(data))
       .catch((error) => console.error(error));
   };
 
@@ -82,7 +79,9 @@ function Provider({ children }) {
     apiInfo,
     accessToken,
     createClient, 
-    createClientAuth
+    createClientAuth,
+    getSingleClient,
+    clientData
   };
 
   return (
