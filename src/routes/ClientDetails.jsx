@@ -32,7 +32,8 @@ import { Outlet, useParams } from "react-router-dom";
 // ];
 
 export const ClientProfileDetails = () => {
-  const { getSingleClient } = useClientContext();
+  const { getSingleClient} = useClientContext();
+
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -43,23 +44,88 @@ export const ClientProfileDetails = () => {
     citizenship: "",
     marital: "",
   });
-  const { id } = useParams();
+  // const { id } = useParams();
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const clientData = await getClient(1);
+  //     if (clientData) {
+  //       setValues((prevState) => ({
+  //         ...prevState,
+  //         firstName: clientData.first_name,
+  //         lastName: clientData.last_name,
+  //         email: clientData.email,
+  //         phone: clientData.phone_number,
+  //         dob: clientData.birthday,
+  //         gender: clientData.gender ? clientData.gender : "",
+  //         citizenship: clientData.citizenship ? clientData.citizenship : "",
+  //         marital: clientData.marital_status ? clientData.marital_status : "",
+  //       }));
+  //     }
+  //   };
+  
+  //   fetchData();
+  // }, [getClient]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const client = await getSingleClient(4);
+  //     console.log(client.first_name);
+  //     if (client) {
+  //       setValues((prevState) => ({
+  //         ...prevState,
+  //         firstName: client.first_name,
+  //         lastName: client.last_name,
+  //         email: client.email,
+  //         phone: client.phone_number,
+  //         dob: client.birthday,
+  //         gender: client.gender ? client.gender : "",
+  //         citizenship: client.citizenship ? client.citizenship : "",
+  //         marital: client.marital_status ? client.marital_status : "",
+  //       }));
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+  
   useEffect(() => {
-    let clientData = getSingleClient(id);
-    setValues((prevState) => ({
-      ...prevState,
-      firstName: clientData.firstName,
-      lastName: clientData.lastName,
-      email: clientData.email,
-      phone: clientData.phone_number,
-      dob: clientData.birthday,
-      gender: clientData.gender,
-      citizenship: clientData.citizenship,
-      marital: clientData.marital_status,
-    }));
-  }, [getSingleClient, id]);
-
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/v1/clients/details/${4}`, {
+          method: "GET",
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+            Expires: "0",
+          },
+        });
+  
+        if (response.ok) {
+          const client = await response.json();
+          console.log(client.first_name);
+          setValues((prevState) => ({
+            ...prevState,
+            firstName: client.first_name,
+            lastName: client.last_name,
+            email: client.email,
+            phone: client.phone_number,
+            dob: client.birthday,
+            gender: client.gender ? client.gender : "",
+            citizenship: client.citizenship ? client.citizenship : "",
+            marital: client.marital_status ? client.marital_status : "",
+          }));
+        } else {
+          console.error("Error fetching client data");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
 
   const handleChange = useCallback((event) => {
     setValues((prevState) => ({
@@ -87,7 +153,7 @@ export const ClientProfileDetails = () => {
                   name="firstName"
                   onChange={handleChange}
                   required
-                  value={values.firstName}
+                  value={values.firstName || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -97,7 +163,7 @@ export const ClientProfileDetails = () => {
                   name="lastName"
                   onChange={handleChange}
                   required
-                  value={values.lastName}
+                  value={values.lastName || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -107,7 +173,7 @@ export const ClientProfileDetails = () => {
                   name="email"
                   onChange={handleChange}
                   required
-                  value={values.email}
+                  value={values.email || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -117,7 +183,7 @@ export const ClientProfileDetails = () => {
                   name="phone"
                   onChange={handleChange}
                   type="number"
-                  value={values.phone}
+                  value={values.phone || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -127,7 +193,7 @@ export const ClientProfileDetails = () => {
                   name="dob"
                   onChange={handleChange}
                   required
-                  value={values.dob}
+                  value={values.dob || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -137,7 +203,7 @@ export const ClientProfileDetails = () => {
                   name="gender"
                   onChange={handleChange}
                   required
-                  value={values.gender}
+                  value={values.gender || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -147,7 +213,7 @@ export const ClientProfileDetails = () => {
                   name="citizenship"
                   onChange={handleChange}
                   required
-                  value={values.citizenship}
+                  value={values.citizenship || ""}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -157,7 +223,7 @@ export const ClientProfileDetails = () => {
                   name="marital"
                   onChange={handleChange}
                   required
-                  value={values.marital}
+                  value={values.marital || ""}
                 />
               </Grid>
             </Grid>

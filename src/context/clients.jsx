@@ -34,12 +34,27 @@ function Provider({ children }) {
     fetch(`/api/v1/clients/details/${id}`, {
       method: "GET",
       headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        Expires: "0",
         Authorization: "Bearer " + accessToken,
       },
     })
       .then((data) => data.json())
-      .then((data) => setClientData(data))
+      .then((data) => console.log(data))
       .catch((error) => console.error(error));
+  };
+
+  const getClient = async (id) => {
+    try {
+      if (!apiInfo) {
+        await fetchClients();
+      }
+      const client = apiInfo.find((client) => client.id === id);
+      return client;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const createClientAuth = async (data) => {
@@ -57,7 +72,6 @@ function Provider({ children }) {
       .then((data) => setApiInfo(data))
       .catch((error) => console.error(error));
   };
-  
 
   const createClient = async (data) => {
     fetch(`/api/v1/clients/`, {
@@ -71,17 +85,17 @@ function Provider({ children }) {
       .then((data) => setApiInfo(data))
       .catch((error) => console.error(error));
   };
-  
 
   const valueToShare = {
     fetchClients,
     getToken,
     apiInfo,
     accessToken,
-    createClient, 
+    createClient,
     createClientAuth,
     getSingleClient,
-    clientData
+    getClient,
+    clientData,
   };
 
   return (
