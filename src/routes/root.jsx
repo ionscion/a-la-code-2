@@ -1,14 +1,50 @@
-import App from "../app";
 import { Provider } from "../context/clients";
+import { useEffect, useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import ClientContext from "../context/clients";
+import Dashboard from "../components/Dashboard";
+import ButtonAppBar from "../components/Appbar";
+import ClientDataTable from "../components/ClientDataTable";
+import { Outlet, useLoaderData} from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: "#0B746C",
+    },
+    secondary: {
+      main: "#0B746C",
+    },
+  },
+});
 
 function Root() {
+  const { isAuthenticated, getIdTokenClaims } = useAuth0();
+  const { fetchClients, getToken, apiInfo, accessToken } =
+    useContext(ClientContext);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getToken();
+    }
+  }, [getIdTokenClaims, isAuthenticated]);
+
+  useEffect(() => {
+    if (accessToken) {
+      fetchClients();
+    }
+  }, [accessToken]);
+
   return (
-    <div>
-      <Provider>
-        <App />
-      </Provider>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <ButtonAppBar />
+        {isAuthenticated && <Dashboard />}
+        {/* {isAuthenticated && <ClientDataTable apiInfo={apiInfo} />} */}
+        {isAuthenticated && <Outlet context={apiInfo} />}
+      </ThemeProvider>
+    </>
   );
 }
 

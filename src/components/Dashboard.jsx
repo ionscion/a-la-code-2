@@ -73,7 +73,7 @@ export default function Dashboard() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link to="/clients" style={{ textDecoration: "none", color: "inherit" }}>
             All Contacts
           </Link>
         </MenuItem>
@@ -84,6 +84,14 @@ export default function Dashboard() {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             Contact Page
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link
+            to="/"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Home
           </Link>
         </MenuItem>
       </Menu>

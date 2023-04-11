@@ -19,6 +19,10 @@ let theme = createTheme({
   },
 });
 
+{/* <Routes>
+  <Route></Route>
+</Routes> */}
+
 function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const {
@@ -46,7 +50,7 @@ function App() {
       <ButtonAppBar />
       {isAuthenticated && <Dashboard />}
       {isAuthenticated && <ClientDataTable apiInfo={apiInfo} />}
-      <Outlet />
+      <Outlet apiInfo={apiInfo}/>
     </ThemeProvider>
   );
 }

@@ -5,6 +5,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import { ClientProfileDetails } from "./routes/ClientDetails";
+import ClientDataTable from "./components/ClientDataTable";
+import { Provider } from "./context/clients";
+import { contextLoader } from "./routes/contextLoader";
 
 const router = createBrowserRouter([
   {
@@ -16,9 +19,13 @@ const router = createBrowserRouter([
         path: "clients/details",
         element: <ClientProfileDetails />,
       },
+      {
+        path: "clients",
+        element: <ClientDataTable />,
+        // loader: {contextLoader}
+      },
     ],
   },
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -29,6 +36,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       redirect_uri: window.location.origin,
     }}
   >
-    <RouterProvider router={router} />
+    <Provider>
+      <RouterProvider router={router} />
+    </Provider>
   </Auth0Provider>
 );

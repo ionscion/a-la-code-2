@@ -1,6 +1,8 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Typography } from "@mui/material";
+import { useLoaderData } from "react-router";
+import { useOutletContext } from "react-router-dom";
 
 const columns = [
   { field: "id", headerName: "Id", width: 200 },
@@ -18,7 +20,9 @@ const columns = [
   { field: "user_id", headerName: "Lawyer Id", width: 200 },
 ];
 
-export default function DataTable({ apiInfo }) {
+export default function DataTable() {
+  const apiInfo = useOutletContext();
+
   let rows = [];
   if (apiInfo) {
     const rowsArray = Array.isArray(apiInfo) ? apiInfo : [apiInfo];
