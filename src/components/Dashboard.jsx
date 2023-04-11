@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import useClientContext from "../hooks/useClientContext";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);

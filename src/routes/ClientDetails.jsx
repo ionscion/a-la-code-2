@@ -11,29 +11,12 @@ import {
   Unstable_Grid2 as Grid,
 } from "@mui/material";
 import useClientContext from "../hooks/useClientContext";
-import { Outlet, useParams } from "react-router-dom";
-// const states = [
-//   {
-//     value: "alabama",
-//     label: "Alabama",
-//   },
-//   {
-//     value: "new-york",
-//     label: "New York",
-//   },
-//   {
-//     value: "san-francisco",
-//     label: "San Francisco",
-//   },
-//   {
-//     value: "los-angeles",
-//     label: "Los Angeles",
-//   },
-// ];
+import { useLoaderData } from "react-router-dom"
+
 
 export const ClientProfileDetails = () => {
   const { getSingleClient} = useClientContext();
-
+  const {id} = useLoaderData();
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -92,7 +75,7 @@ export const ClientProfileDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/v1/clients/details/${4}`, {
+        const response = await fetch(`/api/v1/clients/details/${id}`, {
           method: "GET",
           headers: {
             "Cache-Control": "no-cache",

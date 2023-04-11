@@ -16,13 +16,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "clients/details",
+        path: "clients/details/:id",
         element: <ClientProfileDetails />,
+        loader: ({ params }) => {
+          return { id: params.id };
+        },
       },
       {
         path: "clients",
         element: <ClientDataTable />,
-        // loader: {contextLoader}
       },
     ],
   },

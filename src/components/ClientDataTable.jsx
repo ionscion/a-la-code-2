@@ -1,8 +1,7 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Typography } from "@mui/material";
-import { useLoaderData } from "react-router";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link, useNavigate } from "react-router-dom";
 
 const columns = [
   { field: "id", headerName: "Id", width: 200 },
@@ -22,7 +21,7 @@ const columns = [
 
 export default function DataTable() {
   const apiInfo = useOutletContext();
-
+  const navigate = useNavigate();
   let rows = [];
   if (apiInfo) {
     const rowsArray = Array.isArray(apiInfo) ? apiInfo : [apiInfo];
@@ -42,10 +41,16 @@ export default function DataTable() {
     });
   }
 
+  const handleRowClick = (params) => {
+    console.log(params.row.id);
+    navigate(`/clients/details/${params.row.id}`);
+  };
+
   return (
     <div style={{ height: 500, width: "100%" }}>
       <Typography variant="h4">Client List</Typography>
       <DataGrid
+        onRowClick={handleRowClick}
         rows={rows}
         columns={columns}
         pageSize={5}
