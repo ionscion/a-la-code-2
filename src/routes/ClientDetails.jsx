@@ -10,12 +10,10 @@ import {
   TextField,
   Unstable_Grid2 as Grid,
 } from "@mui/material";
-import useClientContext from "../hooks/useClientContext";
 import { useLoaderData } from "react-router-dom"
 
 
 export const ClientProfileDetails = () => {
-  const { getSingleClient} = useClientContext();
   const {id} = useLoaderData();
   const [values, setValues] = useState({
     firstName: "",
@@ -27,50 +25,6 @@ export const ClientProfileDetails = () => {
     citizenship: "",
     marital: "",
   });
-  // const { id } = useParams();
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const clientData = await getClient(1);
-  //     if (clientData) {
-  //       setValues((prevState) => ({
-  //         ...prevState,
-  //         firstName: clientData.first_name,
-  //         lastName: clientData.last_name,
-  //         email: clientData.email,
-  //         phone: clientData.phone_number,
-  //         dob: clientData.birthday,
-  //         gender: clientData.gender ? clientData.gender : "",
-  //         citizenship: clientData.citizenship ? clientData.citizenship : "",
-  //         marital: clientData.marital_status ? clientData.marital_status : "",
-  //       }));
-  //     }
-  //   };
-  
-  //   fetchData();
-  // }, [getClient]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const client = await getSingleClient(4);
-  //     console.log(client.first_name);
-  //     if (client) {
-  //       setValues((prevState) => ({
-  //         ...prevState,
-  //         firstName: client.first_name,
-  //         lastName: client.last_name,
-  //         email: client.email,
-  //         phone: client.phone_number,
-  //         dob: client.birthday,
-  //         gender: client.gender ? client.gender : "",
-  //         citizenship: client.citizenship ? client.citizenship : "",
-  //         marital: client.marital_status ? client.marital_status : "",
-  //       }));
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
   
   useEffect(() => {
     const fetchData = async () => {

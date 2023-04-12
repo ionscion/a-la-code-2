@@ -7,7 +7,7 @@ import ErrorPage from "./error-page";
 import { ClientProfileDetails } from "./routes/ClientDetails";
 import ClientDataTable from "./components/ClientDataTable";
 import { Provider } from "./context/clients";
-import { contextLoader } from "./routes/contextLoader";
+
 
 const router = createBrowserRouter([
   {

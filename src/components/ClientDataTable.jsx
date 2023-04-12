@@ -51,6 +51,7 @@ export default function DataTable() {
       <Typography variant="h4">Client List</Typography>
       <DataGrid
         onRowClick={handleRowClick}
+        onCellClick={handleRowClick}
         rows={rows}
         columns={columns}
         pageSize={5}

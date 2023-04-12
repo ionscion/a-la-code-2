@@ -1,11 +1,9 @@
-import { Provider } from "../context/clients";
 import { useEffect, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import ClientContext from "../context/clients";
 import Dashboard from "../components/Dashboard";
 import ButtonAppBar from "../components/Appbar";
-import ClientDataTable from "../components/ClientDataTable";
-import { Outlet, useLoaderData} from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 let theme = createTheme({
@@ -41,7 +39,6 @@ function Root() {
       <ThemeProvider theme={theme}>
         <ButtonAppBar />
         {isAuthenticated && <Dashboard />}
-        {/* {isAuthenticated && <ClientDataTable apiInfo={apiInfo} />} */}
         {isAuthenticated && <Outlet context={apiInfo} />}
       </ThemeProvider>
     </>

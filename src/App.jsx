@@ -1,12 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+//Note this has been moved to routes/root.jsx
+
+import {  useEffect, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Dashboard from "./components/Dashboard";
 import ButtonAppBar from "./components/Appbar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ClientDataTable from "./components/ClientDataTable";
 import ClientContext from "./context/clients";
-import jwt_decode from "jwt-decode";
 import { Outlet } from "react-router-dom";
+
 
 let theme = createTheme({
   palette: {
@@ -18,10 +20,6 @@ let theme = createTheme({
     },
   },
 });
-
-{/* <Routes>
-  <Route></Route>
-</Routes> */}
 
 function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();

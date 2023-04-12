@@ -13,21 +13,6 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const authMiddleware = (req, res, next) => {
-//   const authHeader = req.headers.authorization;
-//   if (authHeader) {
-//     const token = authHeader.split(" ")[1];
-//     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//       if (err) {
-//         return res.sendStatus(403);
-//       }
-//       req.user = user;
-//       next();
-//     });
-//   } else {
-//     res.sendStatus(401);
-//   }
-// };
 
 app.get("/api/v1/users/:id", async (req, res) => {
   const user = await User.findAll({ where: { user_id: req.params.id } });
