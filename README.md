@@ -1,10 +1,65 @@
-# React-and-Express-boilerplate
+# Legacy Architects | Account Sign-In/Lawyer Dashboard | Project 2-A-LA-CODE
 
-Boilerplate to start developing a fullstack app with react as frontend and express as backend.
+## Project Description 
 
-# Requirements
+Legacy Architects is an all-in-one estate planning platform that streamlines the entire estate planning process to help attorneys focus on what matters most -- their clients. Of course, developing such a powerful and sophisticated tool requires myriad considerations which is why this project focused on perfecting a few basic functionalities including:
 
-You most have installed a package manager as npm or yarn, and the package concurrently.
+* Creating a login (as a lawyer)
+* Authenticating that login
+* Creating a table of that lawyer's clients
+* Adding to that table of clients
+* Clicking on a specific client to edit their information
+
+To achieve these feats, we employed the following:
+
+* HTML
+* Material UI
+* JavaScript
+* Express
+* Sequelize
+* Mysql
+* React
+* Auth0
+
+## User Story
+
+```md
+AS A lawyer who wants to help my clients
+I WANT a powerful estate planning tool
+SO THAT I can stay organized and focus on my clients' needs
+```
+## Acceptance Criteria
+
+```md
+GIVEN an estate planning platform
+WHEN I visit the site
+THEN I am presented with a page with a login option
+WHEN I click on the login
+THEN I am taken to the secured login where I am prompted to sign in or sign up
+WHEN I sign in or sign up for an account
+THEN I am taken to a page with a dashboard
+WHEN I click on the dashboard
+THEN I am presented with options to view all contacts, create a contact, or go home
+WHEN I click on the all contacts option
+THEN all of my client contacts are displayed
+WHEN I click on new contact
+THEN I am prompted to enter client information
+WHEN I click on home
+THEN I am taken back to home navigation
+WHEN I click on all clients 
+THEN I am taken to a page with all clients, including newly added contact(s)
+WHEN I click on a clients name
+THEN I am presented with the client's table in editable form
+WHEN I click logout
+THEN I am logged out of my account
+```
+## Demo Video
+
+https://youtu.be/1Lb7u2KcMrY
+
+## Requirements
+You must have installed a package manager as npm or yarn, and the package concurrently.
+
 You can do it with the next commands:
 
 For a global installation:
