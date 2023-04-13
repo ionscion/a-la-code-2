@@ -10,7 +10,7 @@ const app = express();
 const assetsRouter = require("./server/assets-router");
 
 if (process.env.NODE_ENV === "production") {
-  app.use("/", express.static("dist"));
+  app.use(express.static(path.join(__dirname, "./dist")));
 } else {
   app.use("/", express.static(path.join(__dirname, "public")));
 }
