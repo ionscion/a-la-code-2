@@ -9,7 +9,9 @@ const app = express();
 
 const assetsRouter = require("./server/assets-router");
 
-app.use("/", express.static(path.join(__dirname, "public")));
+// app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", express.static("dist"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
