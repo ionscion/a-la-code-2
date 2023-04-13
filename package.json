@@ -3,12 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start": "clear && concurrently 'vite' 'node server.js'",
+    "start": "node server.js",
+    "postinstall": "npm run build",
     "dev": "clear && concurrently 'vite' 'nodemon server.js'",
     "build": "vite build",
     "preview": "vite preview",
     "seed": "node ./server/seeds/index.js",
-    "prev": "clear && concurrently 'vite preview' 'node server.js'"
+    "prev": "clear && concurrently 'vite preview' 'node server.js'",
+    "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",

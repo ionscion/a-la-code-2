@@ -9,12 +9,14 @@ const app = express();
 
 const assetsRouter = require("./server/assets-router");
 
-// app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/", express.static("dist"));
+if (process.env.NODE_ENV === "production") {
+  app.use("/", express.static("dist"));
+} else {
+  app.use("/", express.static(path.join(__dirname, "public")));
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.get("/api/v1/users/:id", async (req, res) => {
   const user = await User.findAll({ where: { user_id: req.params.id } });
@@ -27,7 +29,7 @@ app.get("/api/v1/clients/:id", async (req, res) => {
 });
 
 app.get("/api/v1/clients/details/:id", async (req, res) => {
-  const client = await Client.findOne({ where: {id: req.params.id } });
+  const client = await Client.findOne({ where: { id: req.params.id } });
   res.json(client);
 });
 
